@@ -1,0 +1,25 @@
+- sensor:
+    - name: "Nest Thermostat temperature"
+      unit_of_measurement: "°C"
+      unique_id: "hallway_temperature_export"
+      state: "{{ states('sensor.hallway_temperature') }}"
+      attributes:
+        attribute: "{{ now().minute }}"
+    - name: "Living Room temperature"
+      unit_of_measurement: "°C"
+      unique_id: "living_room_temperature_export"
+      state: "{{ states('sensor.lumi_lumi_weather_temperature') }}"
+      attributes:
+        attribute: "{{ now().minute }}"
+    - name: "Bedroom temperature"
+      unit_of_measurement: "°C"
+      unique_id: "bedroom_room_temperature_export"
+      state: "{{ states('sensor.lumi_lumi_weather_temperature_2') }}"
+      attributes:
+        attribute: "{{ now().minute }}"
+    - name: "Front Door temperature"
+      unit_of_measurement: "°C"
+      unique_id: "front_door_temperature_export"
+      state: "{{ states('sensor.lumi_lumi_weather_temperature_3') }}"
+      attributes:
+        attribute: "{{ now().minute }}"
