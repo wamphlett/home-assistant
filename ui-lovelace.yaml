@@ -254,7 +254,7 @@ views:
               circle_input: >
                 [[[
                   if (entity) {
-                      return entity.state === 'cool'
+                      return entity.state === 'heat'
                           ? Math.round(entity.attributes.temperature).toString()
                           : Math.round(entity.attributes.current_temperature).toString();
                   }
