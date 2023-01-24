@@ -35,7 +35,7 @@ script:
         target:
           entity_id:
             - light.all_group_exclude_hall
-            - climate.ac
+            - climate.hallway
             - media_player.sony_bravia_tv
             - media_player.samsung
             - switch.gosund_fan_switch

@@ -62,14 +62,14 @@ automation:
     action:
       service: climate.turn_off
       target:
-        entity_id: climate.ac
+        entity_id: climate.hallway
 
   - alias: climate_safeguard
     initial_state: false
     id: '0374158275864'
     trigger:
       platform: state
-      entity_id: climate.ac
+      entity_id: climate.hallway
       to: cool
     condition:
       condition: state
@@ -78,6 +78,6 @@ automation:
     action:
       service: climate.set_hvac_mode
       target:
-        entity_id: climate.ac
+        entity_id: climate.hallway
       data:
         hvac_mode: fan_only

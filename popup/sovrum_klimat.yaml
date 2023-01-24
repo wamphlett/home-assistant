@@ -62,7 +62,7 @@ browser_mod:
                 entities:
 
                   - type: custom:mushroom-climate-card
-                    entity: climate.ac
+                    entity: climate.hallway
                     name: Klimat
                     icon: mdi:home-thermometer
                     hvac_modes:
@@ -79,7 +79,7 @@ browser_mod:
                         }
 
                   - type: custom:mushroom-climate-card
-                    entity: climate.ac
+                    entity: climate.hallway
                     icon_type: none
                     secondary_info: none
                     primary_info: none
@@ -95,7 +95,7 @@ browser_mod:
                     cards:
 
                       - type: custom:button-card
-                        entity: climate.ac
+                        entity: climate.hallway
                         name: Låg
                         variables:
                           fan_mode: low
@@ -103,7 +103,7 @@ browser_mod:
                           - climate_fan_mode
 
                       - type: custom:button-card
-                        entity: climate.ac
+                        entity: climate.hallway
                         name: Med
                         variables:
                           fan_mode: medium
@@ -111,7 +111,7 @@ browser_mod:
                           - climate_fan_mode
 
                       - type: custom:button-card
-                        entity: climate.ac
+                        entity: climate.hallway
                         name: Hög
                         variables:
                           fan_mode: high
@@ -119,7 +119,7 @@ browser_mod:
                           - climate_fan_mode
 
                       - type: custom:button-card
-                        entity: climate.ac
+                        entity: climate.hallway
                         name: Svep
                         template:
                           - climate_swing_mode

@@ -5,7 +5,7 @@ homekit:
         - switch.deltaco_sh_p01_socket
         - switch.imac
         - switch.gosund_monitors_switch
-        - climate.ac
+        - climate.hallway
         - switch.ps5_635_power
         - switch.gosund_fan_switch
         - person.matte
@@ -22,7 +22,7 @@ homekit:
         name: Dator
       switch.gosund_monitors_switch:
         name: Monitorer
-      climate.ac:
+      climate.hallway:
         name: Klimat
       switch.ps5_635_power:
         name: Playstation

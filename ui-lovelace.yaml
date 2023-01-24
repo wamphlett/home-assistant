@@ -242,7 +242,7 @@ views:
               - icon_lamp
 
           - type: custom:button-card
-            entity: climate.ac
+            entity: climate.hallway
             name: Klimat
             double_tap_action:
               !include popup/sovrum_klimat.yaml
@@ -465,8 +465,8 @@ views:
         cards:
 
           - type: custom:button-card
-            entity: person.matte
-            name: Mattias
+            entity: person.warren
+            name: Warren
             triggers_update:
               - sensor.matte_last_changed
             double_tap_action:
