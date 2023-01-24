@@ -83,6 +83,12 @@ influxdb:
       # anything that should be exported (see templates)
       - sensor.*_export
 
+sensor:
+  - platform: time_date
+    display_options:
+      - time
+      - date
+
 mqtt:
   sensor:
     
