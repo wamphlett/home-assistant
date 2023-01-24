@@ -4,4 +4,5 @@ blueprints
 secrets.yaml
 home-assistant.log*
 home-assistant.db*
+home-assistant_v2.db*
 zigbee.db*
