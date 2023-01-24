@@ -30,8 +30,24 @@ lovelace:
   mode: yaml
   resources:
     [
-      { url: /local/button-card.js, type: module },
+      { url: /local/modules/apexcharts-card.js,    type: module }, # https://github.com/RomRider/apexcharts-card
+      { url: /local/modules/bar-card.js,           type: module }, # https://github.com/custom-cards/bar-card
+      { url: /local/modules/button-card.js,        type: module }, # https://github.com/custom-cards/button-card
+      { url: /local/modules/custom-icons.js,       type: module }, # https://raw.githubusercontent.com/matt8707/hass-config/3ffedd850ce91144406710dd66b92a4326d7e2a3/www/custom_icons.js
+      { url: /local/modules/layout-card.js,        type: module }, # https://github.com/thomasloven/lovelace-layout-card
+      { url: /local/modules/more-info-card.js,     type: module }, # https://github.com/thomasloven/lovelace-more-info-card
+      { url: /local/modules/mushroom.js,           type: module }, # https://github.com/piitaya/lovelace-mushroom
+      { url: /local/modules/slider-entity-row.js,  type: module }, # https://github.com/thomasloven/lovelace-slider-entity-row
+      # { url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js,  type: module },
+      { url: /local/modules/swipe-card.js,         type: module }, # https://github.com/bramkragten/swipe-card
+      { url: /local/modules/tabbed-card.js,        type: module }, # https://github.com/kinghat/tabbed-card
+
+      { url: '/local/marked.min.js?v=4.2.5',       type: module },
+      { url: '/local/vanilla-tilt.min.js?v=1.8.0', type: module },
+      { url: '/local/browser_mod_icon.js?v=0.5',   type: module },
+      { url: '/local/fonts.css?v=2.1',             type: css }
     ]
+    # maybe check this out https://github.com/elax46/custom-brand-icons
 
 recorder:
   purge_keep_days: 5
