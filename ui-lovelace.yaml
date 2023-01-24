@@ -714,7 +714,7 @@ views:
         cards:
 
           - type: custom:button-card
-            entity: light.light.living_room_group
+            entity: light.living_room_group
             name: Lights
             template:
               - light
