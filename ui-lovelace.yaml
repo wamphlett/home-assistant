@@ -604,3 +604,154 @@ views:
                           : states[id[1]].state === 'off';
                 ]]]
             template: footer
+
+  - type: custom:grid-layout
+    title: Home 2
+    layout:
+      #default
+      margin: 0
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(4, 1fr) 0
+      grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+      grid-template-areas: |
+        "sidebar  .           .       .       ."
+        "sidebar  vardagsrum  studio  sovrum  ."
+        "sidebar  media       övrigt  hemma   ."
+        "sidebar  footer      footer  footer  ."
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
+          grid-template-columns: 0 repeat(2, 1fr) 0
+          grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
+          grid-template-areas: |
+            ".  .           .        ."
+            ".  sidebar     sidebar  ."
+            ".  vardagsrum  sovrum   ."
+            ".  studio      övrigt   ."
+            ".  media       hemma    ."
+            ".  footer      footer   ."
+            ".  .           .        ."
+        #portrait
+        "(max-width: 1200px)":
+          grid-gap: var(--custom-layout-card-padding)
+          grid-template-columns: repeat(3, 1fr) 0
+          grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
+          grid-template-areas: |
+            "sidebar  .           .       ."
+            "sidebar  vardagsrum  sovrum  ."
+            "sidebar  studio      övrigt  ."
+            "sidebar  media       hemma   ."
+            "sidebar  footer      footer  ."
+            "sidebar  .           .       ."
+    cards:
+      #extra_styles fix, do not remove
+      #also warn if theme is not set
+
+      - type: custom:button-card
+        view_layout:
+          grid-area: 1 / 2 / 2 / 5
+        name: SET THEME TO "tablet" IN PROFILE
+        tap_action:
+          action: navigate
+          navigation_path: /profile
+        styles:
+          card:
+            - display: >
+                [[[
+                  return hass.themes.theme === 'tablet'
+                      ? 'none'
+                      : 'initial';
+                ]]]
+          name:
+            - z-index: 1
+            - overflow: visible
+            - color: red
+            - font-weight: bolder
+            - font-size: xxx-large
+            - background: yellow
+
+      #################################################
+      #                                               #
+      #                    SIDEBAR                    #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: sidebar
+        cards:
+
+          - type: custom:button-card
+            entity: sensor.template_sidebar
+            template: sidebar
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.laundry_display
+                state: 'on'
+            card:
+              type: custom:button-card
+              entity: timer.laundry
+              double_tap_action:
+                action: call-service
+                service: input_boolean.turn_off
+                service_data:
+                  entity_id: input_boolean.laundry_display
+              template: laundry
+
+      #################################################
+      #                                               #
+      #                  VARDAGSRUM                   #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: Living room
+        view_layout:
+          grid-area: vardagsrum
+        columns: 2
+        cards:
+
+          - type: custom:button-card
+            entity: light.light.living_room_group
+            name: Lights
+            template:
+              - light
+              - icon_hue
+
+          - type: custom:button-card
+            entity: light.vardagsrum_horna
+            name: Hörnlampa
+            template:
+              - light
+              - icon_shade
+
+          - type: custom:button-card
+            entity: media_player.sony_bravia_tv
+            name: Tv
+            state_display: >
+              [[[
+                if (variables.state === 'playing') {
+                    return 'På';
+                }
+                if (variables.state === true) {
+                    return variables.translate_unknown;
+                }
+              ]]]
+            double_tap_action:
+              !include popup/vardagsrum_tv.yaml
+            template:
+              - base
+              - icon_tv
+              - loader
+
+          - type: custom:button-card
+            entity: switch.deltaco_sh_p01_socket
+            name: Balkong
+            double_tap_action:
+              !include popup/vardagsrum_balkong.yaml
+            template:
+              - base
+              - icon_hue
+              - loader
