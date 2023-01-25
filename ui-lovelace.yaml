@@ -235,7 +235,7 @@ views:
 
           - type: custom:button-card
             entity: climate.hallway
-            name: Klimat
+            name: Nest
             double_tap_action:
               !include popup/sovrum_klimat.yaml
             template:
