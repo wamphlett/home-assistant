@@ -439,7 +439,7 @@ views:
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
-                entity: sensor.living_room_temperature
+                entity: sensor.bedroom_temperature
               - type: entity
                 entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
 
@@ -509,7 +509,7 @@ views:
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
-                entity: sensor.living_room_temperature
+                entity: sensor.nest_thermostat_temperature
                 name: Avg
               - type: entity
                 entity: sensor.front_door_temperature
