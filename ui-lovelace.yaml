@@ -232,26 +232,33 @@ views:
             template:
               - light
               - icon_spot
-
+          
           - type: custom:button-card
-            entity: switch.ps5_635_power
-            name: Playstation
-            double_tap_action:
-              !include popup/sovrum_playstation.yaml
+            entity: light.kitchen_spots
+            name: Dining Light
             template:
-              - base
-              - icon_ps5
-              - loader
+              - light
+              - icon_shade
 
-          - type: custom:button-card
-            entity: media_player.samsung
-            name: "Tv\u00B2"
-            double_tap_action:
-              !include popup/sovrum_tv2.yaml
-            template:
-              - base
-              - icon_tv
-              - loader
+          # - type: custom:button-card
+          #   entity: switch.ps5_635_power
+          #   name: Playstation
+          #   double_tap_action:
+          #     !include popup/sovrum_playstation.yaml
+          #   template:
+          #     - base
+          #     - icon_ps5
+          #     - loader
+
+          # - type: custom:button-card
+          #   entity: media_player.samsung
+          #   name: "Tv\u00B2"
+          #   double_tap_action:
+          #     !include popup/sovrum_tv2.yaml
+          #   template:
+          #     - base
+          #     - icon_tv
+          #     - loader
 
       #################################################
       #                                               #
@@ -417,7 +424,9 @@ views:
             entity: switch.hot_blanket
             name: Hot blanket
             template:
+              - base
               - icon_climate
+              - loader
 
           # - type: custom:button-card
           #   entity: switch.gosund_fan_switch
@@ -484,6 +493,7 @@ views:
               - base
               - icon_climate
               - circle
+              - loader
             variables:
               circle_input: >
                 [[[
