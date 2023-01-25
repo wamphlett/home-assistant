@@ -6,9 +6,9 @@ person:
     [[[
       if (entity) {
           return variables.state === 'home'
-              ? variables.translate_home
+              ? "Home"
               : variables.state === 'not_home'
-                  ? variables.translate_not_home
+                  ? "Away"
                   : variables.state;
       }
       return variables.translate_unknown;

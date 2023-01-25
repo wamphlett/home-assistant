@@ -478,8 +478,8 @@ views:
               - circle
 
           - type: custom:button-card
-            entity: person.sophie
-            name: Sanja
+            entity: person.soph
+            name: Soph
             triggers_update:
               - sensor.sophie_last_changed
             double_tap_action:
