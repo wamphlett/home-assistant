@@ -458,7 +458,7 @@ views:
       #################################################
 
       - type: grid
-        title: Hemma
+        title: Home
         view_layout:
           grid-area: hemma
         columns: 2

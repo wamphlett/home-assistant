@@ -1,34 +1,12 @@
-homeassistant:
-  customize:
-    person.matte:
-      entity_picture: /local/mattias.png
-    device_tracker.iphone:
-      entity_picture: /local/device_tracker.svg
-    person.sanja:
-      entity_picture: /local/sanja.png
-
-person:
-  - name: Matte
-    id: matte
-    device_trackers:
-      - device_tracker.mattias_iphone_unifi
-      - device_tracker.iphone #ios
-
-  - name: Sanja
-    id: sanja
-    device_trackers:
-      - device_tracker.sanjas_iphone_unifi
-      - device_tracker.sanja_iphone_13 #ios
-
 mqtt:
   sensor:
-    - name: matte_last_changed
-      state_topic: homeassistant/persistence/matte
+    - name: warren_last_changed
+      state_topic: homeassistant/persistence/warren
       value_template: >
         {{ value | replace(' ', 'T') }}
 
-    - name: sanja_last_changed
-      state_topic: homeassistant/persistence/sanja
+    - name: sophie_last_changed
+      state_topic: homeassistant/persistence/sophie
       value_template: >
         {{ value | replace(' ', 'T') }}
 
@@ -39,8 +17,8 @@ automation:
     trigger:
       platform: state
       entity_id:
-        - person.matte
-        - person.sanja
+        - person.warren
+        - person.sophie
       from:
         - home
         - not_home

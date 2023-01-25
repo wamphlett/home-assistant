@@ -2,6 +2,7 @@ default_config:
 
 homeassistant:
   external_url: !secret external_url
+  packages: !include_dir_named packages
 
 frontend:
   extra_module_url:
