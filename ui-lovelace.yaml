@@ -725,12 +725,14 @@ views:
         view_layout:
           grid-area: vardagsrum
         cards:
+          - type: custom:mushroom-title-card
+            title: Living Room 
+
           - type: custom:mushroom-chips-card
             chips:
               - type: menu
 
           - type: grid
-            title: Living room
             columns: 2
             cards:
               - type: custom:button-card
