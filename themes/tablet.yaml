@@ -148,23 +148,16 @@ tablet:
         min-height: 100vh;
       }
 
-    #################################################
-    #                                               #
-    #              MUSHROOM CARD TITLE              #
-    #                                               #
-    #################################################
-
-    # grid-layout$:
-      
-
-    #################################################
-    #                                               #
-    #              GRID CARD HEADINGS               #
-    #                                               #
-    #################################################
-
     grid-layout:
+
       $hui-vertical-stack-card:
+
+        #################################################
+        #                                               #
+        #              MUSHROOM CARD TITLE              #
+        #                                               #
+        #################################################
+
         $mushroom-title-card:
           $: |
             .header h1 {
@@ -175,6 +168,12 @@ tablet:
               padding: 0.2vw 0 2vw 0 !important;
               letter-spacing: normal !important;
               width: 100%;
+            }
+        
+        $mushroom-chips-card:
+          .: |
+            mushroom-chips-card {
+              margin-bottom: 10px;
             }
 
       $hui-grid-card:
