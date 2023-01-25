@@ -171,58 +171,67 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Office
+      - type: vertical-stack
         view_layout:
           grid-area: studio
-        columns: 2
         cards:
+          - type: custom:mushroom-title-card
+            title: Office
 
-          - type: custom:button-card
-            entity: light.office
-            name: Light
-            template:
-              - light
-              - icon_hue
-          
-          - type: custom:button-card
-            entity: light.desk_strip
-            name: LEDs
-            template:
-              - light
-              - icon_hue
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
 
-          - type: custom:button-card
-            entity: switch.imac
-            name: Dator
-            double_tap_action:
-              !include popup/studio_dator.yaml
-            template:
-              - base
-              - icon_imac
-              - loader
-              - lock
-            variables:
-              lock: >
-                [[[
-                  let lock = states['input_boolean.imac_lock'];
-                  return !lock || lock.state;
-                ]]]
-              trigger: >
-                [[[
-                  let trigger = states['script.home_leave'];
-                  return !trigger || trigger;
-                ]]]
+          - type: grid
+            columns: 2
+            cards:
 
-          - type: custom:button-card
-            entity: switch.desk_speaker
-            name: Speakers
-            double_tap_action:
-              !include popup/studio_monitorer.yaml
-            template:
-              - base
-              - icon_monitors
-              - loader
+              - type: custom:button-card
+                entity: light.office
+                name: Light
+                template:
+                  - light
+                  - icon_hue
+              
+              - type: custom:button-card
+                entity: light.desk_strip
+                name: LEDs
+                template:
+                  - light
+                  - icon_hue
+
+              - type: custom:button-card
+                entity: switch.imac
+                name: Dator
+                double_tap_action:
+                  !include popup/studio_dator.yaml
+                template:
+                  - base
+                  - icon_imac
+                  - loader
+                  - lock
+                variables:
+                  lock: >
+                    [[[
+                      let lock = states['input_boolean.imac_lock'];
+                      return !lock || lock.state;
+                    ]]]
+                  trigger: >
+                    [[[
+                      let trigger = states['script.home_leave'];
+                      return !trigger || trigger;
+                    ]]]
+
+              - type: custom:button-card
+                entity: switch.desk_speaker
+                name: Speakers
+                double_tap_action:
+                  !include popup/studio_monitorer.yaml
+                template:
+                  - base
+                  - icon_monitors
+                  - loader
 
       #################################################
       #                                               #
@@ -230,46 +239,55 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Kitchen
+      - type: vertical-stack
         view_layout:
           grid-area: sovrum
-        columns: 2
         cards:
+          - type: custom:mushroom-title-card
+            title: Kitchen
 
-          - type: custom:button-card
-            entity: light.kitchen_spots
-            name: Lights
-            template:
-              - light
-              - icon_spot
-          
-          - type: custom:button-card
-            entity: light.hue_filament_bulb_1
-            name: Dining Light
-            template:
-              - light
-              - icon_shade
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
 
-          # - type: custom:button-card
-          #   entity: switch.ps5_635_power
-          #   name: Playstation
-          #   double_tap_action:
-          #     !include popup/sovrum_playstation.yaml
-          #   template:
-          #     - base
-          #     - icon_ps5
-          #     - loader
+          - type: grid
+            columns: 2
+            cards:
 
-          # - type: custom:button-card
-          #   entity: media_player.samsung
-          #   name: "Tv\u00B2"
-          #   double_tap_action:
-          #     !include popup/sovrum_tv2.yaml
-          #   template:
-          #     - base
-          #     - icon_tv
-          #     - loader
+              - type: custom:button-card
+                entity: light.kitchen_spots
+                name: Lights
+                template:
+                  - light
+                  - icon_spot
+              
+              - type: custom:button-card
+                entity: light.hue_filament_bulb_1
+                name: Dining Light
+                template:
+                  - light
+                  - icon_shade
+
+              # - type: custom:button-card
+              #   entity: switch.ps5_635_power
+              #   name: Playstation
+              #   double_tap_action:
+              #     !include popup/sovrum_playstation.yaml
+              #   template:
+              #     - base
+              #     - icon_ps5
+              #     - loader
+
+              # - type: custom:button-card
+              #   entity: media_player.samsung
+              #   name: "Tv\u00B2"
+              #   double_tap_action:
+              #     !include popup/sovrum_tv2.yaml
+              #   template:
+              #     - base
+              #     - icon_tv
+              #     - loader
 
       #################################################
       #                                               #
@@ -277,125 +295,133 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Media
+      - type: vertical-stack
         view_layout:
           grid-area: media
-        columns: 1
         cards:
+          - type: custom:mushroom-title-card
+            title: Living Room 
 
-          - type: custom:swipe-card
-            parameters:
-              speed: 550
-              spaceBetween: 40
-              threshold: 5
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: menu
+
+          - type: grid
+            columns: 1
             cards:
 
-              - type: horizontal-stack
+              - type: custom:swipe-card
+                parameters:
+                  speed: 550
+                  spaceBetween: 40
+                  threshold: 5
                 cards:
 
-                  - type: conditional
-                    conditions:
-                      - entity: select.conditional_media
-                        state_not: Vardagsrum
+                  - type: horizontal-stack
+                    cards:
 
-                      - entity: select.conditional_media
-                        state_not: Sovrum
+                      - type: conditional
+                        conditions:
+                          - entity: select.conditional_media
+                            state_not: Vardagsrum
 
-                      - entity: select.conditional_media
-                        state_not: Spotify
+                          - entity: select.conditional_media
+                            state_not: Sovrum
 
-                      - entity: select.conditional_media
-                        state_not: Kök
-                    card:
-                      type: custom:button-card
-                      entity: sensor.plex_recently_added
-                      name: Senast tillagt
-                      tap_action:
-                        action: none
-                      template:
-                        - conditional_media
-                        - icon_plex
+                          - entity: select.conditional_media
+                            state_not: Spotify
 
-                  - type: conditional
-                    conditions:
-                      - entity: select.conditional_media
-                        state: Vardagsrum
-                    card:
-                      type: custom:button-card
-                      entity: media_player.vardagsrum
-                      triggers_update: sensor.youtube_watching
-                      template:
-                        - conditional_media
-                        - icon_apple_tv
+                          - entity: select.conditional_media
+                            state_not: Kök
+                        card:
+                          type: custom:button-card
+                          entity: sensor.plex_recently_added
+                          name: Senast tillagt
+                          tap_action:
+                            action: none
+                          template:
+                            - conditional_media
+                            - icon_plex
 
-                  - type: conditional
-                    conditions:
-                      - entity: select.conditional_media
-                        state: Sovrum
-                    card:
-                      type: custom:button-card
-                      entity: media_player.sovrum
-                      triggers_update: sensor.youtube_watching
-                      template:
-                        - conditional_media
-                        - icon_apple_tv
+                      - type: conditional
+                        conditions:
+                          - entity: select.conditional_media
+                            state: Vardagsrum
+                        card:
+                          type: custom:button-card
+                          entity: media_player.vardagsrum
+                          triggers_update: sensor.youtube_watching
+                          template:
+                            - conditional_media
+                            - icon_apple_tv
 
-                  - type: conditional
-                    conditions:
-                      - entity: select.conditional_media
-                        state: Spotify
-                    card:
-                      type: custom:button-card
-                      entity: media_player.spotify
-                      template:
-                        - conditional_media
-                        - icon_spotify
+                      - type: conditional
+                        conditions:
+                          - entity: select.conditional_media
+                            state: Sovrum
+                        card:
+                          type: custom:button-card
+                          entity: media_player.sovrum
+                          triggers_update: sensor.youtube_watching
+                          template:
+                            - conditional_media
+                            - icon_apple_tv
 
-                  - type: conditional
-                    conditions:
-                      - entity: select.conditional_media
-                        state: Kök
-                    card:
-                      type: custom:button-card
-                      entity: media_player.kok
-                      template:
-                        - conditional_media
-                        - icon_nest_mini
+                      - type: conditional
+                        conditions:
+                          - entity: select.conditional_media
+                            state: Spotify
+                        card:
+                          type: custom:button-card
+                          entity: media_player.spotify
+                          template:
+                            - conditional_media
+                            - icon_spotify
 
-              - type: grid
-                columns: 2
-                cards:
+                      - type: conditional
+                        conditions:
+                          - entity: select.conditional_media
+                            state: Kök
+                        card:
+                          type: custom:button-card
+                          entity: media_player.kok
+                          template:
+                            - conditional_media
+                            - icon_nest_mini
 
-                  - type: custom:button-card
-                    entity: media_player.vardagsrum
-                    triggers_update: sensor.youtube_watching
-                    name: Vardagsrum
-                    template:
-                      - media
-                      - icon_apple_tv
+                  - type: grid
+                    columns: 2
+                    cards:
 
-                  - type: custom:button-card
-                    entity: media_player.sovrum
-                    triggers_update: sensor.youtube_watching
-                    name: Sovrum
-                    template:
-                      - media
-                      - icon_apple_tv
+                      - type: custom:button-card
+                        entity: media_player.vardagsrum
+                        triggers_update: sensor.youtube_watching
+                        name: Vardagsrum
+                        template:
+                          - media
+                          - icon_apple_tv
 
-                  - type: custom:button-card
-                    entity: media_player.spotify
-                    name: Spotify
-                    template:
-                      - media
-                      - icon_spotify
+                      - type: custom:button-card
+                        entity: media_player.sovrum
+                        triggers_update: sensor.youtube_watching
+                        name: Sovrum
+                        template:
+                          - media
+                          - icon_apple_tv
 
-                  - type: custom:button-card
-                    entity: media_player.kok
-                    name: Nest Mini
-                    template:
-                      - media
-                      - icon_nest_mini
+                      - type: custom:button-card
+                        entity: media_player.spotify
+                        name: Spotify
+                        template:
+                          - media
+                          - icon_spotify
+
+                      - type: custom:button-card
+                        entity: media_player.kok
+                        name: Nest Mini
+                        template:
+                          - media
+                          - icon_nest_mini
 
       #################################################
       #                                               #
@@ -403,58 +429,67 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Bedrooms
+      - type: vertical-stack
         view_layout:
           grid-area: övrigt
-        columns: 2
         cards:
+          - type: custom:mushroom-title-card
+            title: Bedroom
 
-          - type: custom:button-card
-            entity: light.main_bedroom
-            name: Light
-            template:
-              - light
-              - icon_hue
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
 
-          - type: custom:button-card
-            entity: light.bedside_lights
-            name: Lamps
-            template:
-              - light
-              - icon_shade
+          - type: grid
+            columns: 2
+            cards:
 
-          - type: custom:button-card
-            entity: light.bed_lights
-            name: Bed lights
-            template:
-              - light
-              - icon_hue
-          
-          - type: custom:button-card
-            entity: switch.hot_blanket
-            name: Hot blanket
-            template:
-              - base
-              - icon_climate
-              - loader
+              - type: custom:button-card
+                entity: light.main_bedroom
+                name: Light
+                template:
+                  - light
+                  - icon_hue
 
-          # - type: custom:button-card
-          #   entity: switch.gosund_fan_switch
-          #   name: "Fläkt\u00B2"
-          #   double_tap_action:
-          #     !include popup/studio_flakt.yaml
-          #   template:
-          #     - base
-          #     - icon_fan2
-          #     - loader
+              - type: custom:button-card
+                entity: light.bedside_lights
+                name: Lamps
+                template:
+                  - light
+                  - icon_shade
 
-          # - type: custom:button-card
-          #   entity: light.garderob_lampa
-          #   name: Garderob
-          #   template:
-          #     - light
-          #     - icon_closet
+              - type: custom:button-card
+                entity: light.bed_lights
+                name: Bed lights
+                template:
+                  - light
+                  - icon_hue
+              
+              - type: custom:button-card
+                entity: switch.hot_blanket
+                name: Hot blanket
+                template:
+                  - base
+                  - icon_climate
+                  - loader
+
+              # - type: custom:button-card
+              #   entity: switch.gosund_fan_switch
+              #   name: "Fläkt\u00B2"
+              #   double_tap_action:
+              #     !include popup/studio_flakt.yaml
+              #   template:
+              #     - base
+              #     - icon_fan2
+              #     - loader
+
+              # - type: custom:button-card
+              #   entity: light.garderob_lampa
+              #   name: Garderob
+              #   template:
+              #     - light
+              #     - icon_closet
 
       #################################################
       #                                               #
@@ -462,10 +497,23 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Home
+      - type: vertical-stack
         view_layout:
           grid-area: hemma
+        cards:
+          - type: custom:mushroom-title-card
+            title: Home
+
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
+                name: Avg
+              - type: entity
+                entity: sensor.front_door_temperature
+                name: front door
+
+      - type: grid
         columns: 2
         cards:
 
