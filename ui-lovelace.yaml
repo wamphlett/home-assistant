@@ -104,55 +104,66 @@ views:
       #                                               #
       #################################################
 
-      - type: grid
-        title: Living Room
+      - type: vertical-stack
         view_layout:
           grid-area: vardagsrum
-        columns: 2
         cards:
+          - type: custom:mushroom-title-card
+            title: Living Room 
 
-          - type: custom:button-card
-            entity: light.living_room_group
-            name: Lights
-            template:
-              - light
-              - icon_hue
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
 
-          - type: custom:button-card
-            entity: light.vardagsrum_horna
-            name: Hörnlampa
-            template:
-              - light
-              - icon_shade
+          - type: grid
+            view_layout:
+              grid-area: vardagsrum
+            columns: 2
+            cards:
 
-          - type: custom:button-card
-            entity: media_player.sony_bravia_tv
-            name: Tv
-            state_display: >
-              [[[
-                if (variables.state === 'playing') {
-                    return 'På';
-                }
-                if (variables.state === true) {
-                    return variables.translate_unknown;
-                }
-              ]]]
-            double_tap_action:
-              !include popup/vardagsrum_tv.yaml
-            template:
-              - base
-              - icon_tv
-              - loader
+              - type: custom:button-card
+                entity: light.living_room_group
+                name: Lights
+                template:
+                  - light
+                  - icon_hue
 
-          - type: custom:button-card
-            entity: switch.deltaco_sh_p01_socket
-            name: Balkong
-            double_tap_action:
-              !include popup/vardagsrum_balkong.yaml
-            template:
-              - base
-              - icon_hue
-              - loader
+              - type: custom:button-card
+                entity: light.vardagsrum_horna
+                name: Hörnlampa
+                template:
+                  - light
+                  - icon_shade
+
+              - type: custom:button-card
+                entity: media_player.sony_bravia_tv
+                name: Tv
+                state_display: >
+                  [[[
+                    if (variables.state === 'playing') {
+                        return 'På';
+                    }
+                    if (variables.state === true) {
+                        return variables.translate_unknown;
+                    }
+                  ]]]
+                double_tap_action:
+                  !include popup/vardagsrum_tv.yaml
+                template:
+                  - base
+                  - icon_tv
+                  - loader
+
+              - type: custom:button-card
+                entity: switch.deltaco_sh_p01_socket
+                name: Balkong
+                double_tap_action:
+                  !include popup/vardagsrum_balkong.yaml
+                template:
+                  - base
+                  - icon_hue
+                  - loader
 
       #################################################
       #                                               #
