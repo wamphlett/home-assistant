@@ -440,6 +440,8 @@ views:
             chips:
               - type: entity
                 entity: sensor.living_room_temperature
+              - type: entity
+                entity: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
 
           - type: grid
             columns: 2
@@ -513,70 +515,70 @@ views:
                 entity: sensor.front_door_temperature
                 name: front door
 
-      - type: grid
-        columns: 2
-        cards:
+          - type: grid
+            columns: 2
+            cards:
 
-          - type: custom:button-card
-            entity: person.warren
-            name: Warren
-            triggers_update:
-              - sensor.warren_last_changed
-            double_tap_action:
-              !include popup/person_warren.yaml
-            variables:
-              retain: sensor.warren_last_changed
-            template:
-              - person
-              - circle
+              - type: custom:button-card
+                entity: person.warren
+                name: Warren
+                triggers_update:
+                  - sensor.warren_last_changed
+                double_tap_action:
+                  !include popup/person_warren.yaml
+                variables:
+                  retain: sensor.warren_last_changed
+                template:
+                  - person
+                  - circle
 
-          - type: custom:button-card
-            entity: person.soph
-            name: Soph
-            triggers_update:
-              - sensor.sophie_last_changed
-            double_tap_action:
-              !include popup/person_sophie.yaml
-            variables:
-              retain: sensor.sophie_last_changed
-            template:
-              - person
-              - circle
-          
-          - type: custom:button-card
-            entity: climate.hallway
-            name: Climate
-            double_tap_action:
-              !include popup/sovrum_klimat.yaml
-            template:
-              - base
-              - icon_climate
-              - circle
-              - loader
-            variables:
-              circle_input: >
-                [[[
-                  if (entity) {
-                      return entity.state === 'heat'
-                          ? Math.round(entity.attributes.temperature).toString()
-                          : Math.round(entity.attributes.current_temperature).toString();
-                  }
-                ]]]
-              circle_input_unit: '°C'
+              - type: custom:button-card
+                entity: person.soph
+                name: Soph
+                triggers_update:
+                  - sensor.sophie_last_changed
+                double_tap_action:
+                  !include popup/person_sophie.yaml
+                variables:
+                  retain: sensor.sophie_last_changed
+                template:
+                  - person
+                  - circle
+              
+              - type: custom:button-card
+                entity: climate.hallway
+                name: Climate
+                double_tap_action:
+                  !include popup/sovrum_klimat.yaml
+                template:
+                  - base
+                  - icon_climate
+                  - circle
+                  - loader
+                variables:
+                  circle_input: >
+                    [[[
+                      if (entity) {
+                          return entity.state === 'heat'
+                              ? Math.round(entity.attributes.temperature).toString()
+                              : Math.round(entity.attributes.current_temperature).toString();
+                      }
+                    ]]]
+                  circle_input_unit: '°C'
 
-          - type: custom:button-card
-            entity: script.home_leave
-            name: Going Out
-            template:
-              - base
-              - icon_away
+              - type: custom:button-card
+                entity: script.home_leave
+                name: Going Out
+                template:
+                  - base
+                  - icon_away
 
-          # - type: custom:button-card
-          #   entity: script.home_arrive
-          #   name: Home
-          #   template:
-          #     - base
-          #     - icon_home
+              # - type: custom:button-card
+              #   entity: script.home_arrive
+              #   name: Home
+              #   template:
+              #     - base
+              #     - icon_home
 
       #################################################
       #                                               #
