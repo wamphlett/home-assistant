@@ -722,6 +722,8 @@ views:
       #################################################
 
       - type: vertical-stack
+        view_layout:
+          grid-area: vardagsrum
         cards:
           - type: custom:mushroom-chips-card
             chips:
@@ -729,8 +731,6 @@ views:
 
           - type: grid
             title: Living room
-            view_layout:
-              grid-area: vardagsrum
             columns: 2
             cards:
               - type: custom:button-card
