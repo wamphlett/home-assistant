@@ -90,44 +90,44 @@ browser_mod:
                           margin: -18px -13px -8px -4px
                         }
 
-                  - type: custom:hui-horizontal-stack-card
-                    title: Fläktläge
-                    cards:
+                  # - type: custom:hui-horizontal-stack-card
+                  #   title: Fläktläge
+                  #   cards:
 
-                      - type: custom:button-card
-                        entity: climate.hallway
-                        name: Låg
-                        variables:
-                          fan_mode: low
-                        template:
-                          - climate_fan_mode
+                  #     - type: custom:button-card
+                  #       entity: climate.hallway
+                  #       name: Låg
+                  #       variables:
+                  #         fan_mode: low
+                  #       template:
+                  #         - climate_fan_mode
 
-                      - type: custom:button-card
-                        entity: climate.hallway
-                        name: Med
-                        variables:
-                          fan_mode: medium
-                        template:
-                          - climate_fan_mode
+                  #     - type: custom:button-card
+                  #       entity: climate.hallway
+                  #       name: Med
+                  #       variables:
+                  #         fan_mode: medium
+                  #       template:
+                  #         - climate_fan_mode
 
-                      - type: custom:button-card
-                        entity: climate.hallway
-                        name: Hög
-                        variables:
-                          fan_mode: high
-                        template:
-                          - climate_fan_mode
+                  #     - type: custom:button-card
+                  #       entity: climate.hallway
+                  #       name: Hög
+                  #       variables:
+                  #         fan_mode: high
+                  #       template:
+                  #         - climate_fan_mode
 
-                      - type: custom:button-card
-                        entity: climate.hallway
-                        name: Svep
-                        template:
-                          - climate_swing_mode
+                  #     - type: custom:button-card
+                  #       entity: climate.hallway
+                  #       name: Svep
+                  #       template:
+                  #         - climate_swing_mode
 
-                  - entity: sensor.broadlink_temperature
-                    name: Rumstemperatur
-                  - entity: sensor.broadlink_humidity
-                    name: Luftfuktighet
+                  - entity: sensor.nest_thermostat_temperature
+                    name: Room Temperature
+                  # - entity: sensor.broadlink_humidity
+                  #   name: Luftfuktighet
 
               - type: custom:apexcharts-card
                 layout: minimal
@@ -166,7 +166,7 @@ browser_mod:
                     crosshairs:
                       show: false
                 series:
-                  - entity: sensor.broadlink_temperature
+                  - entity: sensor.nest_thermostat_temperature
                     name: Temp
                     color: '#385581'
                     type: area
