@@ -111,14 +111,14 @@
         #     <b>Morty är färdig</b>
         #   {% endif %}
         weather: >
-          {% set entity = 'weather.smhi_home' %}
+          {% set entity = 'weather.home' %}
           {% if not is_state(entity, 'unknown') %}
             {% set temp = state_attr(entity, 'temperature') | round %}
             {% set precip = state_attr(entity, 'forecast')[0]['precipitation'] | round %}
-              Känns som {{ temp }}° med {{ 'ingen risk för regn' if precip == 0
-              else precip | string + 'mm regn \u2614\uFE0F' }}
+              Feels like {{ temp }}° with {{ 'no risk of rain' if precip == 0
+              else precip | string + 'mm rain \u2614\uFE0F' }}
           {% else %}
-            Kan inte läsa in väder...
+            Not sure what the weather is like...
           {% endif %}
         # laundry: >
         #   {% set start_time = state_attr('calendar.tvatta', 'start_time') %}
