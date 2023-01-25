@@ -154,7 +154,7 @@ tablet:
     #                                               #
     #################################################
 
-    grid-layout$":
+    grid-layout$:
       hui-vertical-stack-card$:
         mushroom-title-card$:
           .: |
