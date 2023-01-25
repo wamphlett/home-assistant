@@ -2,7 +2,7 @@ action: fire-dom-event
 browser_mod:
   service: browser_mod.popup
   data:
-    title: Klimat
+    title: Climate
     card_mod:
       style:
         #popup header
