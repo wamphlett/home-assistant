@@ -18,7 +18,7 @@ browser_mod:
             class: content
           entities:
 
-            - entity: switch.gosund_monitors_switch
+            - entity: switch.desk_speaker
               secondary_info: last-changed
 
             - type: custom:slider-entity-row

@@ -204,22 +204,14 @@ views:
                 ]]]
 
           - type: custom:button-card
-            entity: switch.gosund_monitors_switch
-            name: Monitorer
+            entity: switch.desk_speaker
+            name: Speakers
             double_tap_action:
               !include popup/studio_monitorer.yaml
             template:
               - base
               - icon_monitors
-              - circle
               - loader
-            variables:
-              circle_input: >
-                [[[
-                  let volume = states['sensor.monitors_volume'];
-                  if (volume) return parseInt(volume.state);
-                ]]]
-              circle_input_unit: '%'
 
       #################################################
       #                                               #
