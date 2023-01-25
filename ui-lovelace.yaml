@@ -514,6 +514,8 @@ views:
               - type: entity
                 entity: sensor.front_door_temperature
                 name: front door
+              - type: entity
+                entity: sensor.smart_meter_electricity_power
 
           - type: grid
             columns: 2
