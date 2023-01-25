@@ -300,7 +300,7 @@ views:
           grid-area: media
         cards:
           - type: custom:mushroom-title-card
-            title: Living Room 
+            title: Media
 
           - type: custom:mushroom-chips-card
             chips:
