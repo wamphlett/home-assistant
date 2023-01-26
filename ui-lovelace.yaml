@@ -143,10 +143,12 @@ views:
                 entity: switch.tv_samsung_q7_series_55
                 name: TV
                 tap_action:
-                  restart: >
+                  action: none
+                  toggle: >
                     [[[
-                      hass.callService('script', 'turn_on', {
-                          entity_id: "script.watch_itv_1_living_room"
+                      hass.callService('mqtt', 'publish', {
+                          topic: "homeassistant/triggers",
+                          payload: "toggle_living_room_tv"
                       });
                     ]]]
                 double_tap_action:
