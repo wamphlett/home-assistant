@@ -19,8 +19,8 @@ views:
         #phone
         "(max-width: 800px)":
           grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
-          grid-template-columns: 0 repeat(2, 1fr) 0
-          grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
+          grid-template-columns: 0 repeat(1, 1fr) 0
+          grid-template-rows: 0 repeat(8, fit-content(100%)) 0fr
           grid-template-areas: |
             ".  .          ."
             ".  sidebar    ."
