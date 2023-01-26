@@ -146,7 +146,7 @@ views:
                   restart: >
                     [[[
                       hass.callService('script', 'turn_on', {
-                          entity_id: script.watch_itv_1_living_room
+                          entity_id: "script.watch_itv_1_living_room"
                       });
                     ]]]
                 double_tap_action:
