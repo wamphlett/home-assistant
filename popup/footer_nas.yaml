@@ -279,19 +279,19 @@ browser_mod:
                 border: none !important;
               }
           entities:
-            - entity: sensor.template_nas_status
+            # - entity: sensor.template_nas_status
 
-            - entity: binary_sensor.nas_security_status
-              name: Säkerhetsstatus
+            - entity: binary_sensor.primarynas_security_status
+              name: Security status
 
-            - entity: sensor.nas_volume_1_average_disk_temp
+            - entity: sensor.primarynas_volume_1_average_disk_temp
 
-            - entity: sensor.last_boot
-              name: Senast omstart
+            # - entity: sensor.last_boot
+            #   name: Senast omstart
 
-            - entity: update.nas_dsm_update
+            - entity: update.primarynas_dsm_update
               icon: mdi:package-up
-              name: Uppdatering
+              name: Update
 
             - type: custom:bar-card
               width: 55%
@@ -331,10 +331,10 @@ browser_mod:
             - type: custom:hui-horizontal-stack-card
               cards:
                 - type: custom:button-card
-                  name: Starta om
+                  name: Restart
                   icon: mdi:restart-alert
                   confirmation:
-                    text: Är du säker på att du vill starta om NAS?
+                    text: Are you sure you want to reboot the NAS?
                   tap_action:
                     action: call-service
                     service: browser_mod.sequence
@@ -342,17 +342,17 @@ browser_mod:
                       sequence:
                         - service: browser_mod.notification
                           data:
-                            message: Startar om NAS...
+                            message: Restarting the NAS...
                         - service: button.press
                           data:
-                            entity_id: button.nas_reboot
+                            entity_id: button.primarynas_reboot
                   template: icon_name
 
                 - type: custom:button-card
-                  name: Stäng av...
+                  name: Turn off
                   icon: mdi:alert
                   confirmation:
-                    text: Är du säker på att du vill stänga av NAS?
+                    text: Are you sure you want to turn off the NAS?
                   tap_action:
                     action: call-service
                     service: browser_mod.sequence
@@ -360,7 +360,7 @@ browser_mod:
                       sequence:
                         - service: browser_mod.notification
                           data:
-                            message: Stänger av NAS...
+                            message: Shutting down the nas...
                         - service: button.press
                           data:
                             entity_id: button.nas_shutdown
