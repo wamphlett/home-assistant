@@ -807,19 +807,10 @@ views:
                   - icon_shade
 
               - type: custom:button-card
-                entity: media_player.sony_bravia_tv
-                name: Tv
-                state_display: >
-                  [[[
-                    if (variables.state === 'playing') {
-                        return 'På';
-                    }
-                    if (variables.state === true) {
-                        return variables.translate_unknown;
-                    }
-                  ]]]
+                entity: switch.tv_samsung_q7_series_55
+                name: TV
                 double_tap_action:
-                  !include popup/vardagsrum_tv.yaml
+                  !include popup/bedroom_tv.yaml
                 template:
                   - base
                   - icon_tv
