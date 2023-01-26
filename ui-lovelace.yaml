@@ -140,8 +140,8 @@ views:
                   - icon_shade
 
               - type: custom:button-card
-                entity: media_player.sony_bravia_tv
-                name: Tv
+                entity: switch.samsung_7_series_43
+                name: TV
                 state_display: >
                   [[[
                     if (variables.state === 'playing') {
