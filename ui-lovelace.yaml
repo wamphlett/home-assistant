@@ -22,13 +22,16 @@ views:
           grid-template-columns: 0 repeat(2, 1fr) 0
           grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
           grid-template-areas: |
-            ".  .           .        ."
-            ".  sidebar     sidebar  ."
-            ".  vardagsrum  sovrum   ."
-            ".  studio      övrigt   ."
-            ".  media       hemma    ."
-            ".  footer      footer   ."
-            ".  .           .        ."
+            ".  .          ."
+            ".  sidebar    ."
+            ".  vardagsrum ."
+            ".  sovrum     ."
+            ".  studio     ."
+            ".  övrigt     ."
+            ".  media      ."
+            ".  hemma      ."
+            ".  footer     ."
+            ".  .          ."
         #portrait
         "(max-width: 1200px)":
           grid-gap: var(--custom-layout-card-padding)
