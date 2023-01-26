@@ -140,7 +140,7 @@ views:
                   - icon_shade
 
               - type: custom:button-card
-                entity: switch.samsung_7_series_43
+                entity: switch.tv_samsung_q7_series_55
                 name: TV
                 double_tap_action:
                   !include popup/bedroom_tv.yaml
@@ -442,7 +442,7 @@ views:
             cards:
 
               - type: custom:button-card
-                entity: light.main_bedroom
+                entity: light.main_bedroom_lights
                 name: Light
                 template:
                   - light
@@ -456,11 +456,14 @@ views:
                   - icon_shade
 
               - type: custom:button-card
-                entity: light.bed_lights
-                name: Bed lights
+                entity: switch.samsung_7_series_43
+                name: TV
+                double_tap_action:
+                  !include popup/bedroom_tv.yaml
                 template:
-                  - light
-                  - icon_hue
+                  - base
+                  - icon_tv
+                  - loader
               
               - type: custom:button-card
                 entity: switch.hot_blanket
