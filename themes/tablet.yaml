@@ -137,7 +137,7 @@ tablet:
 
   card-mod-root: |
     ha-app-layout {
-      background: url('/local/background.png');
+      background: url('/local/alternate_background.jpg');
       background-size: cover;
     }
 
