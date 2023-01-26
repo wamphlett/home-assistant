@@ -92,7 +92,7 @@ browser_mod:
                 icon: mdi:volume-plus
                 tap_action:
                   action: call-service
-                  service: media_player.volume_up
+                  service: remote.send_command
                   service_data:
                     entity_id: remote.rm_mini_3
                     device: bedroom tv
