@@ -68,12 +68,11 @@ browser_mod:
                 icon: mdi:volume-mute
                 tap_action:
                   action: call-service
-                  service: media_player.volume_mute
+                  service: remote.send_command
                   service_data:
-                    entity_id: >
-                      [[[ return entity.entity_id; ]]]
-                    is_volume_muted: >
-                      [[[ return entity.attributes.is_volume_muted === 'false' ? 'true' : 'false'; ]]]
+                    entity_id: remote.rm_mini_3
+                    device: bedroom tv
+                    command: vol_mute
                 template: icon_only
 
               - type: custom:button-card
@@ -81,10 +80,11 @@ browser_mod:
                 icon: mdi:volume-minus
                 tap_action:
                   action: call-service
-                  service: media_player.volume_down
+                  service: remote.send_command
                   service_data:
-                    entity_id: >
-                      [[[ return entity.entity_id; ]]]
+                    entity_id: remote.rm_mini_3
+                    device: bedroom tv
+                    command: vol_down
                 template: icon_only
 
               - type: custom:button-card
@@ -94,6 +94,7 @@ browser_mod:
                   action: call-service
                   service: media_player.volume_up
                   service_data:
-                    entity_id: >
-                      [[[ return entity.entity_id; ]]]
+                    entity_id: remote.rm_mini_3
+                    device: bedroom tv
+                    command: vol_up
                 template: icon_only

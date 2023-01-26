@@ -142,17 +142,8 @@ views:
               - type: custom:button-card
                 entity: switch.samsung_7_series_43
                 name: TV
-                state_display: >
-                  [[[
-                    if (variables.state === 'playing') {
-                        return 'På';
-                    }
-                    if (variables.state === true) {
-                        return variables.translate_unknown;
-                    }
-                  ]]]
                 double_tap_action:
-                  !include popup/vardagsrum_tv.yaml
+                  !include popup/bedroom_tv.yaml
                 template:
                   - base
                   - icon_tv
