@@ -142,6 +142,13 @@ views:
               - type: custom:button-card
                 entity: switch.tv_samsung_q7_series_55
                 name: TV
+                tap_action:
+                  restart: >
+                    [[[
+                      hass.callService('script', 'turn_on', {
+                          entity_id: script.watch_itv_1_living_room
+                      });
+                    ]]]
                 double_tap_action:
                   !include popup/living_room_tv.yaml
                 template:
