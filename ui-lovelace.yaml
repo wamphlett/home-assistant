@@ -143,7 +143,7 @@ views:
                 entity: switch.tv_samsung_q7_series_55
                 name: TV
                 double_tap_action:
-                  !include popup/bedroom_tv.yaml
+                  !include popup/living_room_tv.yaml
                 template:
                   - base
                   - icon_tv
