@@ -4,6 +4,8 @@ homeassistant:
   external_url: !secret external_url
   packages: !include_dir_named packages
 
+python_script:
+
 frontend:
   extra_module_url:
     - /local/modules/card-mod.js
