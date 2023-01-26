@@ -1,0 +1,3 @@
+timer:
+  bedroom_tv_sleep:
+    duration: "01:00:00"
