@@ -169,6 +169,22 @@ browser_mod:
             class: header
           entities:
 
+            - type: custom:mushroom-entity-card
+              entity: switch.fish_pump
+              name: Light
+              tap_action: toggle
+            
+            - type: custom:mushroom-entity-card
+              entity: switch.fish_pump
+              name: Pump
+              fill_container: true
+              tap_action: toggle
+            
+            - type: custom:mushroom-entity-card
+              entity: switch.fish_pump
+              name: CO2
+              tap_action: toggle
+
             # - type: custom:bar-card
             #   width: 55%
             #   height: 2em
@@ -191,9 +207,7 @@ browser_mod:
             - entity: input_datetime.bookcase_tank_last_feed
               name: Last feed
 
-            - type: custom:mushroom-entity-card
-              entity: switch.fish_pump
-              name: Pump
+            
 
             # - entity: sensor.docker_containers_stopped
             #   name: Containrar Stoppade
