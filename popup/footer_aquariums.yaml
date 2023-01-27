@@ -214,12 +214,42 @@ browser_mod:
             - type: custom:mushroom-entity-card
               entity: input_datetime.bookcase_tank_last_feed
               name: Last feed
-            
 
             - entity: timer.bookcase_tank_feed
             - entity: switch.bookcase_tank_feed_timer
               name: Timer
-
+            
+            - type: conditional
+              conditions:
+                - entity: timer.bookcase_tank_feed
+                  state: idle
+              card:
+                - type: custom:button-card
+                  name: Feed
+                  icon: mdi:shaker
+                  tap_action:
+                    action: call-service
+                    service: timer.start
+                    service_data:
+                      entity_id: timer.bookcase_tank_feed
+                  template: icon_name
+            
+            - type: conditional
+              conditions:
+                - entity: timer.bookcase_tank_feed
+                  state: active
+              card:
+                - type: custom:button-card
+                  name: Cancel
+                  icon: mdi:cancel
+                  tap_action:
+                    action: call-service
+                    service: timer.cancel
+                    service_data:
+                      entity_id: timer.bookcase_tank_feed
+                  template: icon_name
+            
+            #mdi:cancel
             
 
             # - entity: sensor.docker_containers_stopped
