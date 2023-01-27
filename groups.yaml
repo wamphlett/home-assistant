@@ -1,0 +1,17 @@
+family:
+  name: Family
+  entities:
+    - person.warren
+    - person.soph
+
+almost_everything:
+  name: Almost Everything
+  entities:
+    - light.living_room_2
+    - light.kitchen_lights
+    - light.hallway_lights
+    - light.tylers_room
+    - media_player.home_theater
+    - switch.desk_speaker
+    - switch.hot_blanket
+    - switch.shellyplus2pm_b8d61a89bda0_switch_0

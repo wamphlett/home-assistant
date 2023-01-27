@@ -1,0 +1,151 @@
+default_config:
+
+homeassistant:
+  external_url: !secret external_url
+  packages: !include_dir_named packages
+
+python_script:
+
+frontend:
+  extra_module_url:
+    - /local/modules/card-mod.js
+  themes: !include_dir_merge_named themes
+
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+tplink:
+  discovery: true
+  strip: !secret tplink_strip_ips
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: !secret http_trusted_proxies
+
+template: !include_dir_merge_list templates
+
+lovelace:
+  mode: yaml
+  resources:
+    [
+      { url: /local/modules/apexcharts-card.js,          type: module }, # https://github.com/RomRider/apexcharts-card
+      { url: /local/modules/bar-card.js,                 type: module }, # https://github.com/custom-cards/bar-card
+      { url: /local/modules/button-card.js,              type: module }, # https://github.com/custom-cards/button-card
+      { url: /local/modules/custom-icons.js,             type: module }, # https://raw.githubusercontent.com/matt8707/hass-config/3ffedd850ce91144406710dd66b92a4326d7e2a3/www/custom_icons.js
+      { url: /local/modules/layout-card.js,              type: module }, # https://github.com/thomasloven/lovelace-layout-card
+      { url: /local/modules/more-info-card.js,           type: module }, # https://github.com/thomasloven/lovelace-more-info-card
+      { url: /local/modules/mushroom.js,                 type: module }, # https://github.com/piitaya/lovelace-mushroom
+      { url: /local/modules/slider-entity-row.js,        type: module }, # https://github.com/thomasloven/lovelace-slider-entity-row
+      # { url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js, type: module },
+      { url: /local/modules/swipe-card.js,               type: module }, # https://github.com/bramkragten/swipe-card
+      { url: /local/modules/tabbed-card.js,              type: module }, # https://github.com/kinghat/tabbed-card
+      { url: /local/modules/mini-media-player-bundle.js, type: module }, # https://github.com/kalkih/mini-media-player
+      { url: /local/modules/mini-graph-card-bundle.js,   type: module }, # https://github.com/kalkih/mini-graph-card
+
+      { url: '/local/marked.min.js?v=4.2.5',             type: module },
+      { url: '/local/vanilla-tilt.min.js?v=1.8.0',       type: module },
+      { url: '/local/browser_mod_icon.js?v=0.5',         type: module },
+      { url: '/local/fonts.css?v=2.1',                   type: css }
+    ]
+    # maybe check this out https://github.com/elax46/custom-brand-icons
+
+recorder:
+  purge_keep_days: 5
+  db_url: !secret recorder_db_url
+
+influxdb:
+  api_version: 2
+  ssl: false
+  host: !secret influxdb_host
+  port: !secret influxdb_port
+  token: !secret influxdb_token
+  organization: !secret influxdb_organization
+  bucket: !secret influxdb_bucket
+  include:
+    entities:
+      - fan.living_room_air_filter
+      - climate.hallway
+      - weather.home
+
+    entity_globs:
+      # smart meter sensors
+      - sensor.smart_meter_*
+      # air quality sensors
+      - sensor.*_air_quality
+      - sensor.*_filter_life
+      - sensor.*_pm2_5
+      # temperature sensors
+      - sensor.*_temperature
+      - sensor.*_humidity
+
+      # anything that should be exported (see templates)
+      - sensor.*_export
+
+sensor:
+  - platform: time_date
+    display_options:
+      - time
+      - date
+
+mqtt:
+  sensor:
+    
+    ####
+    ##
+    ## Local MQTT for Glow IHD
+    ## 
+    ## Energy imports using the Glow IHD via local MQTT
+    ## see: https://www.speaktothegeek.co.uk/2022/06/hildebrand-glow-update-local-mqtt-and-home-assistant/
+    ##
+    ####
+
+    - name: "Smart Meter Electricity: Power"
+      unique_id: "smart_meter_electricity_power"
+      state_topic: !secret smart_meter_electricity_power_topic
+      device_class: "power"
+      unit_of_measurement: "W"
+      state_class: "measurement"
+      value_template: "{{ (value_json['electricitymeter']['power']['value'] * 1000) | round() }}"
+      icon: "mdi:flash"
+    
+    - name: "Smart Meter Gas: Power"
+      unique_id: "smart_meter_gas_power"
+      state_topic: !secret smart_meter_gas_power_topic
+      device_class: "power"
+      unit_of_measurement: "W"
+      state_class: "measurement"
+      value_template: "{{ (value_json['gasmeter']['power']['value'] * 1000) | round() }}"
+      icon: "mdi:fire"
+    
+    - name: "Smart Meter Electricity: Energy Import"
+      unique_id: "smart_meter_electricity_energy_import"
+      state_topic: !secret smart_meter_electricity_power_topic
+      device_class: "energy"
+      unit_of_measurement: "kWh"
+      state_class: "total_increasing"
+      value_template: >
+        {% if value_json['electricitymeter']['energy']['import']['cumulative'] == 0 %}
+          {{ states('sensor.smart_meter_electricity_energy_import') }}
+        {% else %}
+          {{ value_json['electricitymeter']['energy']['import']['cumulative'] }}
+        {% endif %}
+      icon: "mdi:flash"
+    
+    - name: "Smart Meter Gas: Import"
+      unique_id: "smart_meter_gas_import"
+      state_topic: !secret smart_meter_gas_power_topic
+      device_class: "energy"
+      unit_of_measurement: "kWh"
+      state_class: "total_increasing"
+      value_template: >
+        {% if value_json['gasmeter']['energy']['import']['cumulative'] == 0 %}
+          {{ states('sensor.smart_meter_gas_import') }}
+        {% else %}
+          {{ value_json['gasmeter']['energy']['import']['cumulative'] }}
+        {% endif %}
+      icon: "mdi:fire"

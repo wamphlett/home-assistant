@@ -1,0 +1,35 @@
+mqtt:
+  sensor:
+    - name: warren_last_changed
+      state_topic: homeassistant/persistence/warren
+      value_template: >
+        {{ value | replace(' ', 'T') }}
+
+    - name: sophie_last_changed
+      state_topic: homeassistant/persistence/sophie
+      value_template: >
+        {{ value | replace(' ', 'T') }}
+
+automation:
+  - alias: person_home
+    id: '8423590985012'
+    mode: parallel
+    trigger:
+      platform: state
+      entity_id:
+        - person.warren
+        - person.sophie
+      from:
+        - home
+        - not_home
+      to:
+        - home
+        - not_home
+    action:
+      service: mqtt.publish
+      data:
+        topic_template: >
+          homeassistant/persistence/{{ trigger.to_state.name | lower }}
+        payload_template: >
+          {{ now() }}
+        retain: true
