@@ -161,7 +161,7 @@ browser_mod:
 
         - type: entities
           view_layout:
-            grid-area: docker
+            grid-area: bookcase
           title: Bookcase Tank
           state_color: true
           show_header_toggle: false
@@ -267,7 +267,7 @@ browser_mod:
 
         - type: entities
           view_layout:
-            grid-area: nas
+            grid-area: _140p
           title: Synology DS918+
           show_header_toggle: false
           card_mod:
