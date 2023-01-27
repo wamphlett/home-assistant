@@ -172,18 +172,24 @@ browser_mod:
             - type: custom:mushroom-entity-card
               entity: switch.fish_pump
               name: Light
-              tap_action: toggle
+              icon: mdi:led-strip
+              tap_action:
+                action: toggle
             
             - type: custom:mushroom-entity-card
               entity: switch.fish_pump
               name: Pump
+              icon: mdi:water-pump
               fill_container: true
-              tap_action: toggle
+              tap_action:
+                action: toggle
             
             - type: custom:mushroom-entity-card
               entity: switch.fish_pump
               name: CO2
-              tap_action: toggle
+              icon: mdi:molecule-co2
+              tap_action:
+                action: toggle
 
             # - type: custom:bar-card
             #   width: 55%
