@@ -207,7 +207,7 @@ views:
                   - icon_shade
 
               - type: custom:button-card
-                entity: switch.tv_samsung_q7_series_55
+                entity: sensor.living_room_tv
                 name: TV
                 tap_action:
                   action: none
