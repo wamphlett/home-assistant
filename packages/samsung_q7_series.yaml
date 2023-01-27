@@ -1,0 +1,10 @@
+template:
+  - sensor:
+    - name: "Living Room TV"
+      state: >
+        {% set plugPower = states('sensor.smartthings_outlet_power_meter') | float %}
+        {% if plugPower >= 20 %}
+          on 
+        {% else %}
+          of
+        {% endif %}
