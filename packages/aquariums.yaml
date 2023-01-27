@@ -15,3 +15,20 @@ input_datetime:
     name: Bookcase Tank Last Feed Time/Date
     has_date: true
     has_time: true
+
+switch:
+  - platform: template
+    switches:
+      bookcase_tank_feed_timer:
+        friendly_name: State
+        icon_template: mdi:timer-outline
+        value_template: >
+          {{ is_state('timer.bookcase_tank_feed', 'active') }}
+        turn_on:
+          service: timer.start
+          target:
+            entity_id: timer.bookcase_tank_feed
+        turn_off:
+          service: timer.cancel
+          target:
+            entity_id: timer.bookcase_tank_feed

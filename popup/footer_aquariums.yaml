@@ -214,6 +214,11 @@ browser_mod:
             - type: custom:mushroom-entity-card
               entity: input_datetime.bookcase_tank_last_feed
               name: Last feed
+            
+
+            - entity: timer.bookcase_tank_feed
+            - entity: switch.bookcase_tank_feed_timer
+              name: Timer
 
             
 
