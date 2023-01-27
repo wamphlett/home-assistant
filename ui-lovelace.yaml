@@ -153,15 +153,6 @@ views:
                       ? seriesName : value < 1024 ? `${Math.round(value)} kB/s`
                       : `${convert} MB/s`;
                   }
-                markers:
-                  width: 26
-                  height: 23
-                  customHTML:
-                    - 'EVAL:() => {return `<ha-icon icon="mdi:arrow-down-bold" style="--mdc-icon-size: 23px;"></ha-icon>`}'
-                    - 'EVAL:() => {return `<ha-icon icon="mdi:arrow-up-bold" style="--mdc-icon-size: 23px;"></ha-icon>`}'
-                  fillColors:
-                    - none
-                    - none
               fill:
                 type: gradient
                 gradient:
@@ -178,12 +169,18 @@ views:
               type: area
               fill_raw: last
             series:
-              - entity: sensor.primarynas_download_throughput
-                name: Ned
+              - entity: sensor.nest_thermostat_temperature
+                name: nest thermostat
                 color: green
-              - entity: sensor.primarynas_upload_throughput
-                name: Upp
+              - entity: sensor.living_room_temperature
+                name: living room
                 color: '#385581'
+              - entity: sensor.bedroom_temperature
+                name: bedroom
+                color: blue
+              - entity: sensor.front_door_temperature
+                name: front door
+                color: yello
 
       #################################################
       #                                               #
