@@ -170,7 +170,7 @@ browser_mod:
           entities:
 
             - type: custom:mushroom-entity-card
-              entity: switch.fish_pump
+              entity: switch.fish_light
               name: Light
               icon: mdi:led-strip
               tap_action:
@@ -185,7 +185,7 @@ browser_mod:
                 action: toggle
             
             - type: custom:mushroom-entity-card
-              entity: switch.fish_pump
+              entity: switch.fish_co2
               name: CO2
               icon: mdi:molecule-co2
               tap_action:
