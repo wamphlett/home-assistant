@@ -78,14 +78,14 @@ views:
       #                                               #
       #################################################
 
-      # - type: vertical-stack
-      #   view_layout:
-      #     grid-area: sidebar
-      #   cards:
+      - type: vertical-stack
+        view_layout:
+          grid-area: sidebar
+        cards:
 
-      #     - type: custom:button-card
-      #       entity: sensor.template_sidebar
-      #       template: sidebar
+          - type: custom:button-card
+            entity: sensor.template_sidebar
+            template: sidebar
 
       #     - type: conditional
       #       conditions:
@@ -101,72 +101,72 @@ views:
       #             entity_id: input_boolean.laundry_display
       #         template: laundry
 
-      - type: vertical-stack
-        view_layout:
-          grid-area: sidebar
-        cards:
+      # - type: vertical-stack
+      #   view_layout:
+      #     grid-area: sidebar
+      #   cards:
 
-        - type: entities
-          show_header_toggle: false
-          card_mod:
-            class: header
-            # no border on last card
-            style: |
-              ha-card {
-                border: none !important;
-              }
-          entities:
+      #   - type: entities
+      #     show_header_toggle: false
+      #     card_mod:
+      #       class: header
+      #       # no border on last card
+      #       style: |
+      #         ha-card {
+      #           border: none !important;
+      #         }
+      #     entities:
 
-            - type: custom:button-card
-              entity: sensor.template_sidebar
-              template: sidebar
+      #       - type: custom:button-card
+      #         entity: sensor.template_sidebar
+      #         template: sidebar
             
-          footer:
-            type: custom:apexcharts-card
-            layout: minimal
-            graph_span: 1h
-            locale: se
-            apex_config:
-              chart:
-                fontFamily: var(--primary-font-family)
-                height: 135px
-              tooltip:
-                style:
-                  fontSize: 14px
-                x:
-                  show: true
-                  format: dddd HH:mm
-              xaxis:
-                crosshairs:
-                  show: false
-              fill:
-                type: gradient
-                gradient:
-                  type: vertical
-                  opacityFrom: 0.8
-                  opacityTo: 0
-                  stops:
-                    - 0
-                    - 99
-                    - 100
-              stroke:
-                width: 3
-            all_series_config:
-              type: area
-              fill_raw: last
-            series:
-              - entity: sensor.nest_thermostat_temperature
-                name: nest thermostat
-                color: green
-              - entity: sensor.living_room_temperature
-                name: living room
-                color: '#385581'
-              - entity: sensor.bedroom_temperature
-                name: bedroom
-                color: blue
-              - entity: sensor.front_door_temperature
-                name: front door
-                color: yello
+      #     footer:
+      #       type: custom:apexcharts-card
+      #       layout: minimal
+      #       graph_span: 1h
+      #       locale: se
+      #       apex_config:
+      #         chart:
+      #           fontFamily: var(--primary-font-family)
+      #           height: 135px
+      #         tooltip:
+      #           style:
+      #             fontSize: 14px
+      #           x:
+      #             show: true
+      #             format: dddd HH:mm
+      #         xaxis:
+      #           crosshairs:
+      #             show: false
+      #         fill:
+      #           type: gradient
+      #           gradient:
+      #             type: vertical
+      #             opacityFrom: 0.8
+      #             opacityTo: 0
+      #             stops:
+      #               - 0
+      #               - 99
+      #               - 100
+      #         stroke:
+      #           width: 3
+      #       all_series_config:
+      #         type: area
+      #         fill_raw: last
+      #       series:
+      #         - entity: sensor.nest_thermostat_temperature
+      #           name: nest thermostat
+      #           color: green
+      #         - entity: sensor.living_room_temperature
+      #           name: living room
+      #           color: '#385581'
+      #         - entity: sensor.bedroom_temperature
+      #           name: bedroom
+      #           color: blue
+      #         - entity: sensor.front_door_temperature
+      #           name: front door
+      #           color: yello
 
       #################################################
       #                                               #
