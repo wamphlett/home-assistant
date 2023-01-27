@@ -6,5 +6,5 @@ template:
         {% if plugPower >= 20 %}
           on 
         {% else %}
-          of
+          off
         {% endif %}
