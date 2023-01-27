@@ -41,6 +41,9 @@ browser_mod:
                     margin-top: 1.7em;
                     max-width: 82vw; /* iphonex */
                   }
+                  #root > * {
+                    flex: 0 1 auto !important;
+                  }
     content:
       type: custom:layout-card
       layout_type: custom:grid-layout
@@ -216,8 +219,6 @@ browser_mod:
               name: Last feed
 
             - entity: timer.bookcase_tank_feed
-            - entity: switch.bookcase_tank_feed_timer
-              name: Timer
             
             - type: custom:hui-horizontal-stack-card
               cards:
