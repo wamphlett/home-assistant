@@ -5,6 +5,11 @@ timer:
   140p_tank_feed:
     duration: "00:10:00"
 
+template:
+  - sensor:
+    - name: "Bookcase Last Feed Time"
+    - name: "140p Last Feed Time"
+
 input_datetime:
   bookcase_tank_last_feed:
     name: Bookcase Tank Last Feed Time/Date
