@@ -12,7 +12,7 @@ browser_mod:
       type: vertical-stack
       cards:
 
-        - type: custom:mushroom-title-card
+        - type: custom:mushroom-fan-card
           title: Core 300s
           entity: fan.living_room_air_filter
 
