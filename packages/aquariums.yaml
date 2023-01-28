@@ -43,4 +43,20 @@ script:
           timestamp: "{{ now().timestamp() }}"
         target:
           entity_id: input_datetime.140p_tank_last_feed
+      - service: switch.turn_off
+        target:
+          entity_id: switch.fish_pump
     mode: single
+
+automation:
+  - alias: Bookcase Feed Finished
+    id: '3683394346277'
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.bookcase_tank_feed
+    action:
+      service: switch.turn_on
+      target:
+        entity_id: switch.fish_pump
