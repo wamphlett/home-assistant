@@ -42,7 +42,7 @@ script:
         data:
           timestamp: "{{ now().timestamp() }}"
         target:
-          entity_id: input_datetime.140p_tank_last_feed
+          entity_id: input_datetime.bookcase_tank_last_feed
       - service: switch.turn_off
         target:
           entity_id: switch.fish_pump

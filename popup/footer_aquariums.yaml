@@ -195,10 +195,6 @@ browser_mod:
                 action: toggle
 
             - type: custom:mushroom-entity-card
-              entity: timer.bookcase_tank_feed
-              name: Feed timer
-
-            - type: custom:mushroom-entity-card
               entity: input_datetime.bookcase_tank_last_feed
               name: Last feed
 
