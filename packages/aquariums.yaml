@@ -45,11 +45,10 @@ script:
       - service: timer.start
         target:
           entity_id: timer.bookcase_tank_feed
-      - service: input_datetime.set_datetime
+      - service: python_script.set_state
         data:
-          timestamp: "{{ now().timestamp() }}"
-        target:
-          entity_id: input_datetime.bookcase_tank_last_feed
+          entity_id: sensor.bookcase_last_feed_time
+          state: "{{ now().timestamp() }}"
       - service: switch.turn_off
         target:
           entity_id: switch.fish_pump
