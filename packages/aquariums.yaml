@@ -25,10 +25,22 @@ switch:
         value_template: >
           {{ is_state('timer.bookcase_tank_feed', 'active') }}
         turn_on:
-          service: timer.start
-          target:
-            entity_id: timer.bookcase_tank_feed
+          service: script.bookcase_feed
         turn_off:
           service: timer.cancel
           target:
             entity_id: timer.bookcase_tank_feed
+
+script:
+  bookcase_feed:
+    alias: Bookcase Tank Feed
+    sequence:
+      - service: timer.start
+        target:
+          entity_id: timer.bookcase_tank_feed
+      - service: input_datetime.set_datetime
+        data:
+          timestamp: "{{ now().timestamp() }}"
+        target:
+          entity_id: input_datetime.140p_tank_last_feed
+    mode: single

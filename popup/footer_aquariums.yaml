@@ -194,22 +194,6 @@ browser_mod:
               tap_action:
                 action: toggle
 
-            # - type: custom:bar-card
-            #   width: 55%
-            #   height: 2em
-            #   decimal: 0
-            #   unit_of_measurement: '%'
-            #   positions: *bar_card_positions
-            #   severity: *bar_card_severity
-            #   entity_row: true
-            #   entities:
-
-            #     - entity: sensor.docker_1cpu
-            #       name: Processor
-
-            #     - entity: sensor.docker_memory_percent
-            #       name: Minne
-
             - type: custom:mushroom-entity-card
               entity: timer.bookcase_tank_feed
               name: Feed timer
@@ -251,14 +235,6 @@ browser_mod:
                       service_data:
                         entity_id: timer.bookcase_tank_feed
                     template: icon_name
-            
-            #mdi:cancel
-            
-
-            # - entity: sensor.docker_containers_stopped
-            #   name: Containrar Stoppade
-
-            # - entity: switch.docker_transmission_seed
 
         ### NAS
 
