@@ -229,7 +229,7 @@ views:
                 entity: fan.living_room_air_filter
                 name: Purifier
                 double_tap_action:
-                  !include popup/vardagsrum_balkong.yaml
+                  !include popup/living_room_air_purifier.yaml
                 template:
                   - base
                   - icon_fan2
