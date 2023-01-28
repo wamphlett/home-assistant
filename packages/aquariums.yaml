@@ -6,7 +6,7 @@ timer:
     duration: "00:10:00"
 
 mqtt:
-  - sensor:
+  sensor:
     - name: "Bookcase Last Feed Time"
       state_topic: homeassistant/tankfeed/bookcase
       value_template: >
