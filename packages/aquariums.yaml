@@ -5,12 +5,16 @@ timer:
   140p_tank_feed:
     duration: "00:10:00"
 
-template:
+mqtt:
   - sensor:
     - name: "Bookcase Last Feed Time"
-      state: ""
+      state_topic: homeassistant/tankfeed/bookcase
+      value_template: >
+        {{ value | replace(' ', 'T') }}
     - name: "140p Last Feed Time"
-      state: ""
+      state_topic: homeassistant/tankfeed/140p
+      value_template: >
+        {{ value | replace(' ', 'T') }}
 
 input_datetime:
   bookcase_tank_last_feed:
@@ -45,13 +49,16 @@ script:
       - service: timer.start
         target:
           entity_id: timer.bookcase_tank_feed
-      - service: python_script.set_state
-        data:
-          entity_id: sensor.bookcase_last_feed_time
-          state: "{{ now().timestamp() }}"
       - service: switch.turn_off
         target:
           entity_id: switch.fish_pump
+      - service: mqtt.publish
+        data:
+          topic_template: >
+            homeassistant/tankfeed/bookcase
+          payload_template: >
+            {{ now() }}
+          retain: true
     mode: single
 
 automation:
