@@ -12,7 +12,7 @@ input_datetime:
     has_time: true
   
   140p_tank_last_feed:
-    name: Bookcase Tank Last Feed Time/Date
+    name: 140p Tank Last Feed Time/Date
     has_date: true
     has_time: true
 
