@@ -2,7 +2,7 @@ timer:
   bookcase_tank_feed:
     duration: "00:10:00"
     
-  140p_tank_feed:
+  140l_tank_feed:
     duration: "00:10:00"
 
 mqtt:
@@ -11,23 +11,13 @@ mqtt:
       state_topic: homeassistant/tankfeed/bookcase
       value_template: >
         {{ value | replace(' ', 'T') }}
-    - name: "140p Last Feed Time"
-      state_topic: homeassistant/tankfeed/140p
+    - name: "140L Last Feed Time"
+      state_topic: homeassistant/tankfeed/140l
       value_template: >
         {{ value | replace(' ', 'T') }}
 
-input_datetime:
-  bookcase_tank_last_feed:
-    name: Bookcase Tank Last Feed Time/Date
-    has_date: true
-    has_time: true
-  
-  140p_tank_last_feed:
-    name: 140p Tank Last Feed Time/Date
-    has_date: true
-    has_time: true
-
 script:
+  # Pause the tank pump and set the last feed time
   bookcase_feed:
     alias: Bookcase Tank Feed
     sequence:
@@ -40,6 +30,24 @@ script:
       - service: mqtt.publish
         data:
           topic: homeassistant/tankfeed/bookcase
+          payload: >
+            {{ now() }}
+          retain: true
+    mode: single
+  
+  # Pause the tank pump and set the last feed time
+  140l_feed:
+    alias: 140L Tank Feed
+    sequence:
+      - service: timer.start
+        target:
+          entity_id: timer.140l_tank_feed
+      - service: switch.turn_off
+        target:
+          entity_id: switch.tank_pump
+      - service: mqtt.publish
+        data:
+          topic: homeassistant/tankfeed/140l
           payload: >
             {{ now() }}
           retain: true
@@ -57,3 +65,15 @@ automation:
       service: switch.turn_on
       target:
         entity_id: switch.fish_pump
+
+  - alias: 140L Feed Finished
+    id: '3683394346278'
+    trigger:
+      platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.140l_tank_feed
+    action:
+      service: switch.turn_on
+      target:
+        entity_id: switch.tank_pump
