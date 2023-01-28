@@ -54,8 +54,7 @@ script:
           entity_id: switch.fish_pump
       - service: mqtt.publish
         data:
-          topic: >
-            homeassistant/tankfeed/bookcase
+          topic: homeassistant/tankfeed/bookcase
           payload: >
             {{ now() }}
           retain: true
