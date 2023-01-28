@@ -8,7 +8,9 @@ timer:
 template:
   - sensor:
     - name: "Bookcase Last Feed Time"
+      state: ""
     - name: "140p Last Feed Time"
+      state: ""
 
 input_datetime:
   bookcase_tank_last_feed:
