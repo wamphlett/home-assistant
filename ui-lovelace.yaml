@@ -226,13 +226,13 @@ views:
                   - loader
 
               - type: custom:button-card
-                entity: switch.deltaco_sh_p01_socket
-                name: Balkong
+                entity: fan.living_room_air_filter
+                name: Purifier
                 double_tap_action:
                   !include popup/vardagsrum_balkong.yaml
                 template:
                   - base
-                  - icon_hue
+                  - icon_fan2
                   - loader
 
       #################################################
