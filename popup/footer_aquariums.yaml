@@ -195,7 +195,7 @@ browser_mod:
                 action: toggle
 
             - type: custom:mushroom-entity-card
-              entity: sensor.bookcase_tank_last_feed
+              entity: sensor.bookcase_last_feed_time
               name: Last feed
 
             - entity: timer.bookcase_tank_feed
