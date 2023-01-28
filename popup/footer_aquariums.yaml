@@ -212,9 +212,7 @@ browser_mod:
                     icon: mdi:shaker
                     tap_action:
                       action: call-service
-                      service: timer.start
-                      service_data:
-                        entity_id: timer.bookcase_tank_feed
+                      service: script.bookcase_feed
                     template: icon_name
                 
                 - type: conditional
