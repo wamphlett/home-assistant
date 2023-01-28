@@ -14,6 +14,7 @@ browser_mod:
 
         - type: custom:mushroom-title-card
           title: Core 300s
+          entity: fan.living_room_air_filter
 
         # - type: entities
         #   state_color: true
@@ -65,23 +66,23 @@ browser_mod:
               - type: custom:button-card
                 entity: switch.monitors_mute
                 icon: mdi:fan-auto
+                name: Auto
                 tap_action:
                   action: call-service
                   service: fan.set_preset_mode
                   service_data:
                     preset_mode: "auto"
-                  target:
                     entity_id: fan.living_room_air_filter
                 template: icon_name
 
               - type: custom:button-card
                 icon: mdi:power-sleep
+                name: Sleep
                 tap_action:
                   action: call-service
                   service: fan.set_preset_mode
                   service_data:
                     preset_mode: "sleep"
-                  target:
                     entity_id: fan.living_room_air_filter
                 template: icon_name
 
@@ -106,9 +107,8 @@ browser_mod:
                   service: fan.set_percentage
                   service_data:
                     percentage: 33
-                  target:
                     entity_id: fan.living_room_air_filter
-                template: icon_name
+                template: icon_only
 
               - type: custom:button-card
                 icon: mdi:fan-speed-2
@@ -117,9 +117,8 @@ browser_mod:
                   service: fan.set_percentage
                   service_data:
                     percentage: 66
-                  target:
                     entity_id: fan.living_room_air_filter
-                template: icon_name
+                template: icon_only
 
               - type: custom:button-card
                 icon: mdi:fan-speed-3
@@ -128,9 +127,8 @@ browser_mod:
                   service: fan.set_percentage
                   service_data:
                     percentage: 100
-                  target:
                     entity_id: fan.living_room_air_filter
-                template: icon_name
+                template: icon_only
         
         - type: custom:apexcharts-card
           layout: minimal
