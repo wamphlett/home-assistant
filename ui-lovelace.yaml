@@ -200,11 +200,10 @@ views:
                   - icon_hue
 
               - type: custom:button-card
-                entity: light.vardagsrum_horna
-                name: Hörnlampa
+                entity: media_player.home_theater
+                name: AVR
                 template:
-                  - light
-                  - icon_shade
+                  - icon_monitors
 
               - type: custom:button-card
                 entity: sensor.living_room_tv
