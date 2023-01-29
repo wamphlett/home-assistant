@@ -203,7 +203,9 @@ views:
                 entity: media_player.home_theater
                 name: AVR
                 template:
+                  - base 
                   - icon_monitors
+                  - loader
 
               - type: custom:button-card
                 entity: sensor.living_room_tv
