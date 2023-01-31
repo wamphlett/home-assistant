@@ -75,6 +75,9 @@ influxdb:
     entity_globs:
       # smart meter sensors
       - sensor.smart_meter_*
+      # energy sensors
+      - sensor.*_power
+      - sensor.*_energy
       # air quality sensors
       - sensor.*_air_quality
       - sensor.*_filter_life
