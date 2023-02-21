@@ -1,0 +1,22 @@
+light:
+  - platform: group
+    name: "Desk Lights"
+    unique_id: desk_lights_group
+    entities:
+      - light.desk_strip
+      - light.wled_segment_1
+  
+  - platform: group
+    name: "Kitchen Strips"
+    unique_id: kitchen_strips_group
+    entities:
+      - light.cupboard_white
+      - light.cupboard_colour
+  
+  - platform: group
+    name: "Hallway lights"
+    unique_id: hallway_lights_group
+    entities:
+      - light.front_door_light # this will likely end up change as it needs to go back to home assistant control
+      - light.stairs
+      - light.hall

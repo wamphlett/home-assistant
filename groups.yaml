@@ -15,3 +15,8 @@ almost_everything:
     - switch.desk_speaker
     - switch.hot_blanket
     - switch.shellyplus2pm_b8d61a89bda0_switch_0
+
+    # light groups
+    - light.desk_lights_group
+    - light.kitchen_strips_group
+    - light.hallway_lights_group
