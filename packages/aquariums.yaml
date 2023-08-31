@@ -27,12 +27,20 @@ script:
       - service: switch.turn_off
         target:
           entity_id: switch.fish_pump
+      - service: switch.turn_off
+        target:
+          entity_id: switch.tank_wave_machine
       - service: mqtt.publish
         data:
           topic: homeassistant/tankfeed/bookcase
           payload: >
             {{ now() }}
           retain: true
+      - service: mqtt.publish
+        data:
+          topic: homeassistant/timers/bookcase_tank_feed/started
+          payload: >
+            {{ now() }}
     mode: single
   
   # Pause the tank pump and set the last feed time
@@ -51,6 +59,11 @@ script:
           payload: >
             {{ now() }}
           retain: true
+      - service: mqtt.publish
+        data:
+          topic: homeassistant/timers/140l_tank_feed/started
+          payload: >
+            {{ now() }}
     mode: single
 
 automation:
@@ -62,9 +75,11 @@ automation:
       event_data:
         entity_id: timer.bookcase_tank_feed
     action:
-      service: switch.turn_on
-      target:
-        entity_id: switch.fish_pump
+      service: mqtt.publish
+      data:
+        topic: homeassistant/timers/bookcase_tank_feed/finished
+        payload: >
+          {{ now() }}
 
   - alias: 140L Feed Finished
     id: '3683394346278'
@@ -74,6 +89,8 @@ automation:
       event_data:
         entity_id: timer.140l_tank_feed
     action:
-      service: switch.turn_on
-      target:
-        entity_id: switch.tank_pump
+      service: mqtt.publish
+      data:
+        topic: homeassistant/timers/140l_tank_feed/finished
+        payload: >
+          {{ now() }}
