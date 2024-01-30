@@ -136,8 +136,8 @@ tablet:
   card-mod-theme: tablet
 
   card-mod-root: |
-    ha-app-layout {
-      background: url('/local/alternate_background.jpg');
+    hui-view {
+      background: url('/local/alternate_background.jpg') !important;
       background-size: cover;
     }
 
@@ -241,15 +241,12 @@ tablet:
 
     grid-layout$hui-vertical-stack-card$: |
       #root {
-        background-color: rgba(0, 0, 0, 0.06);
         border-radius: 0;
-        border-right: 0.1vw solid rgba(58, 69, 73, 0.2);
         min-height: 100vh;
       }
       /* phone */
       @media screen and (max-width: 800px) {
         #root {
-          background-color: rgba(0,0,0,0);
           border-right: none;
           min-height: 100%;
           margin-left: -0.8%;

@@ -5,11 +5,6 @@ mqtt:
       value_template: >
         {{ value | replace(' ', 'T') }}
 
-    - name: sophie_last_changed
-      state_topic: homeassistant/persistence/sophie
-      value_template: >
-        {{ value | replace(' ', 'T') }}
-
 automation:
   - alias: person_home
     id: '8423590985012'
@@ -18,7 +13,6 @@ automation:
       platform: state
       entity_id:
         - person.warren
-        - person.sophie
       from:
         - home
         - not_home

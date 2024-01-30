@@ -609,14 +609,14 @@ views:
                   - circle
 
               - type: custom:button-card
-                entity: person.soph
-                name: Soph
+                entity: person.warren
+                name: Warren
                 triggers_update:
-                  - sensor.sophie_last_changed
+                  - sensor.warren_last_changed
                 double_tap_action:
-                  !include popup/person_sophie.yaml
+                  !include popup/person_warren.yaml
                 variables:
-                  retain: sensor.sophie_last_changed
+                  retain: sensor.warren_last_changed
                 template:
                   - person
                   - circle

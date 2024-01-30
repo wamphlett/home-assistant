@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  homeassistant:
+    container_name: home-assistant
+    image: ghcr.io/home-assistant/home-assistant:2024.1
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=Europe/London
+    ports:
+      - 8123:8123
+    restart: unless-stopped
+    privileged: true
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: homeassistant
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root

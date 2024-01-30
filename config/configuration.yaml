@@ -8,7 +8,7 @@ python_script:
 
 frontend:
   extra_module_url:
-    - /local/modules/card-mod.js
+    - /local/modules/card-mod.js # 3.4.2
   themes: !include_dir_merge_named themes
 
 tts:
@@ -18,10 +18,6 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-tplink:
-  discovery: true
-  strip: !secret tplink_strip_ips
 
 http:
   use_x_forwarded_for: true

@@ -1,0 +1,238 @@
+button_card_templates:
+  !include_dir_merge_named button_card_templates
+
+views:
+  - type: custom:grid-layout
+    title: Home
+    layout:
+      #default
+      margin: 0
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(4, 1fr) 0
+      grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+      grid-template-areas: |
+        "sidebar  .           .       .       ."
+        "sidebar  vardagsrum  studio  sovrum  ."
+        "sidebar  media       övrigt  hemma   ."
+        "sidebar  footer      footer  footer  ."
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
+          grid-template-columns: 0 repeat(1, 1fr) 0
+          grid-template-rows: 0 repeat(8, fit-content(100%)) 0fr
+          grid-template-areas: |
+            ".  .          ."
+            ".  sidebar    ."
+            ".  vardagsrum ."
+            ".  sovrum     ."
+            ".  studio     ."
+            ".  övrigt     ."
+            ".  media      ."
+            ".  hemma      ."
+            ".  footer     ."
+            ".  .          ."
+        #portrait
+        "(max-width: 1200px)":
+          grid-gap: var(--custom-layout-card-padding)
+          grid-template-columns: repeat(3, 1fr) 0
+          grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
+          grid-template-areas: |
+            "sidebar  .           .       ."
+            "sidebar  vardagsrum  sovrum  ."
+            "sidebar  studio      övrigt  ."
+            "sidebar  media       hemma   ."
+            "sidebar  footer      footer  ."
+            "sidebar  .           .       ."
+    cards:
+
+      #extra_styles fix, do not remove
+      #also warn if theme is not set
+
+      - type: custom:button-card
+        view_layout:
+          grid-area: 1 / 2 / 2 / 5
+        name: SET THEME TO "tablet" IN PROFILE
+        tap_action:
+          action: navigate
+          navigation_path: /profile
+        styles:
+          card:
+            - display: >
+                [[[
+                  return hass.themes.theme === 'tablet'
+                      ? 'none'
+                      : 'initial';
+                ]]]
+          name:
+            - z-index: 1
+            - overflow: visible
+            - color: red
+            - font-weight: bolder
+            - font-size: xxx-large
+            - background: yellow
+
+      #################################################
+      #                                               #
+      #                    SIDEBAR                    #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: sidebar
+        
+        cards:
+          - type: custom:button-card
+            entity: sensor.template_sidebar
+            template: sidebar
+
+      #     - type: conditional
+      #       conditions:
+      #         - entity: input_boolean.laundry_display
+      #           state: 'on'
+      #       card:
+      #         type: custom:button-card
+      #         entity: timer.laundry
+      #         double_tap_action:
+      #           action: call-service
+      #           service: input_boolean.turn_off
+      #           service_data:
+      #             entity_id: input_boolean.laundry_display
+      #         template: laundry
+
+      # - type: vertical-stack
+      #   view_layout:
+      #     grid-area: sidebar
+      #   cards:
+
+      #   - type: entities
+      #     show_header_toggle: false
+      #     card_mod:
+      #       class: header
+      #       # no border on last card
+      #       style: |
+      #         ha-card {
+      #           border: none !important;
+      #         }
+      #     entities:
+
+      #       - type: custom:button-card
+      #         entity: sensor.template_sidebar
+      #         template: sidebar
+            
+      #     footer:
+      #       type: custom:apexcharts-card
+      #       layout: minimal
+      #       graph_span: 1h
+      #       locale: se
+      #       apex_config:
+      #         chart:
+      #           fontFamily: var(--primary-font-family)
+      #           height: 135px
+      #         tooltip:
+      #           style:
+      #             fontSize: 14px
+      #           x:
+      #             show: true
+      #             format: dddd HH:mm
+      #         xaxis:
+      #           crosshairs:
+      #             show: false
+      #         fill:
+      #           type: gradient
+      #           gradient:
+      #             type: vertical
+      #             opacityFrom: 0.8
+      #             opacityTo: 0
+      #             stops:
+      #               - 0
+      #               - 99
+      #               - 100
+      #         stroke:
+      #           width: 3
+      #       all_series_config:
+      #         type: area
+      #         fill_raw: last
+      #       series:
+      #         - entity: sensor.nest_thermostat_temperature
+      #           name: nest thermostat
+      #           color: green
+      #         - entity: sensor.living_room_temperature
+      #           name: living room
+      #           color: '#385581'
+      #         - entity: sensor.bedroom_temperature
+      #           name: bedroom
+      #           color: blue
+      #         - entity: sensor.front_door_temperature
+      #           name: front door
+      #           color: yello
+
+      #################################################
+      #                                               #
+      #  Living Room                                  #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: vardagsrum
+        cards:
+          - type: custom:mushroom-title-card
+            title: Living Room 
+
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.living_room_temperature
+
+          - type: grid
+            view_layout:
+              grid-area: vardagsrum
+            columns: 2
+            cards:
+
+              - type: custom:button-card
+                entity: light.living_room_group
+                name: Lights
+                template:
+                  - light
+                  - icon_hue
+
+              - type: custom:button-card
+                entity: media_player.home_theater
+                name: AVR
+                template:
+                  - base 
+                  - icon_monitors
+                  - loader
+
+              - type: custom:button-card
+                entity: sensor.living_room_tv
+                name: TV
+                tap_action:
+                  action: none
+                  toggle: >
+                    [[[
+                      hass.callService('mqtt', 'publish', {
+                          topic: "homeassistant/triggers",
+                          payload: "toggle_living_room_tv"
+                      });
+                    ]]]
+                double_tap_action:
+                  !include popup/living_room_tv.yaml
+                template:
+                  - base
+                  - icon_tv
+                  - loader
+
+              - type: custom:button-card
+                entity: fan.living_room_air_filter
+                name: Purifier
+                double_tap_action:
+                  !include popup/living_room_air_purifier.yaml
+                template:
+                  - base
+                  - icon_fan2
+                  - loader
+
