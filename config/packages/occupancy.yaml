@@ -16,8 +16,8 @@ template:
           minutes: 4
   
   - binary_sensor:
-      - name: "Hallway Occupancy 1m"
+      - name: "Hallway Occupancy 30s"
         state: >
           {{ is_state('binary_sensor.lumi_lumi_motion_ac02_iaszone_2', 'on') }}
         delay_off:
-          minutes: 1
+          seconds: 30
