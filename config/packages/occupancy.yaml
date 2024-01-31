@@ -21,3 +21,11 @@ template:
           {{ is_state('binary_sensor.lumi_lumi_motion_ac02_iaszone_2', 'on') }}
         delay_off:
           seconds: 30
+  
+  - binary_sensor:
+      - name: "Family Home Occupancy 10m"
+        state_class: presence
+        state: >
+          {{ is_state('group.family', 'home') }}
+        delay_off:
+          minutes: 10
