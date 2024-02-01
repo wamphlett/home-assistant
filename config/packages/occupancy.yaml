@@ -24,7 +24,7 @@ template:
   
   - binary_sensor:
       - name: "Family Home Occupancy 10m"
-        state_class: presence
+        device_class: presence
         state: >
           {{ is_state('group.family', 'home') }}
         delay_off:
