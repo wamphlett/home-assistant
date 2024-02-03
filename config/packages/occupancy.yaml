@@ -29,3 +29,18 @@ template:
           {{ is_state('group.family', 'home') }}
         delay_off:
           minutes: 10
+  
+  - binary_sensor:
+      - name: "Doorbell Occupancy 2m"
+        state: >
+          {{ is_state('binary_sensor.g4_doorbell_pro_motion', 'on') }}
+        delay_off:
+          minutes: 2
+  
+  # living_room_occupancy is a helper sensor which is a group of all the sensors in the living room
+  - binary_sensor:
+      - name: "Living Room Occupancy 5m"
+        state: >
+          {{ is_state('binary_sensor.living_room_occupancy', 'on') }}
+        delay_off:
+          minutes: 5
